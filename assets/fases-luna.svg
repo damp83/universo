@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fondo -->
+    <rect width="800" height="200" fill="#1a1a2e"/>
+    
+    <!-- Luna Nueva -->
+    <g transform="translate(100, 100)">
+        <circle cx="0" cy="0" r="50" fill="#2c3e50"/>
+        <text x="0" y="80" text-anchor="middle" fill="white" font-family="Arial" font-size="14">Luna Nueva</text>
+    </g>
+    
+    <!-- Cuarto Creciente -->
+    <g transform="translate(300, 100)">
+        <path d="M0,-50 A50,50 0 0,1 0,50 A50,50 0 0,1 0,-50" fill="#f1c40f"/>
+        <text x="0" y="80" text-anchor="middle" fill="white" font-family="Arial" font-size="14">Cuarto Creciente</text>
+    </g>
+    
+    <!-- Luna Llena -->
+    <g transform="translate(500, 100)">
+        <circle cx="0" cy="0" r="50" fill="#f1c40f"/>
+        <text x="0" y="80" text-anchor="middle" fill="white" font-family="Arial" font-size="14">Luna Llena</text>
+    </g>
+    
+    <!-- Cuarto Menguante -->
+    <g transform="translate(700, 100)">
+        <path d="M0,-50 A50,50 0 0,0 0,50 A50,50 0 0,0 0,-50" fill="#f1c40f"/>
+        <text x="0" y="80" text-anchor="middle" fill="white" font-family="Arial" font-size="14">Cuarto Menguante</text>
+    </g>
+    
+    <!-- Líneas conectoras -->
+    <path d="M150,100 L250,100" stroke="#ffffff" stroke-width="2" stroke-dasharray="5,5"/>
+    <path d="M350,100 L450,100" stroke="#ffffff" stroke-width="2" stroke-dasharray="5,5"/>
+    <path d="M550,100 L650,100" stroke="#ffffff" stroke-width="2" stroke-dasharray="5,5"/>
+    
+    <!-- Estrellas decorativas -->
+    <g fill="#ffffff">
+        <circle cx="50" cy="30" r="2"/>
+        <circle cx="150" cy="20" r="1.5"/>
+        <circle cx="250" cy="40" r="2"/>
+        <circle cx="350" cy="25" r="1.5"/>
+        <circle cx="450" cy="35" r="2"/>
+        <circle cx="550" cy="15" r="1.5"/>
+        <circle cx="650" cy="30" r="2"/>
+        <circle cx="750" cy="25" r="1.5"/>
+    </g>
+</svg> 
