@@ -1,0 +1,1108 @@
+/* animaciones.css - Animaciones base para el proyecto */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shine {
+  0% { box-shadow: 0 0 10px #fff; }
+  50% { box-shadow: 0 0 30px #7b4fff; }
+  100% { box-shadow: 0 0 10px #fff; }
+}
+
+@keyframes rotate360 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Clases utilitarias */
+.flotar {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulso {
+  animation: pulse 1.5s infinite;
+}
+
+.aparecer {
+  animation: fadeIn 0.7s ease;
+}
+
+.brillo {
+  animation: shine 2.5s infinite;
+}
+
+.rotar {
+  display: inline-block;
+  animation: rotate360 2.5s linear infinite;
+}
+
+/* Efecto de brillo para elementos interactivos */
+.brillo {
+  position: relative;
+  overflow: hidden;
+}
+
+.brillo::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: brillo 3s infinite;
+}
+
+@keyframes brillo {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+/* Efecto de desvanecimiento */
+.desvanecer {
+  animation: desvanecer 0.5s ease-out;
+}
+
+@keyframes desvanecer {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-20px); }
+}
+
+/* Efecto de rebote */
+.rebotar {
+  animation: rebotar 0.5s ease-in-out;
+}
+
+@keyframes rebotar {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Efecto de brillo para textos */
+.texto-brillante {
+  background: linear-gradient(45deg, #ffd700, #ff8c00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: brilloTexto 2s infinite;
+}
+
+@keyframes brilloTexto {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
+
+/* Efecto de hover para tarjetas */
+.tarjeta {
+  transition: all 0.3s ease;
+}
+
+.tarjeta:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Efecto de transición suave para imágenes */
+.imagen-transicion {
+  transition: all 0.3s ease;
+}
+
+.imagen-transicion:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+/* Efecto de gradiente animado */
+.gradiente-animado {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96c93d);
+  background-size: 300% 300%;
+  animation: gradiente 5s ease infinite;
+}
+
+@keyframes gradiente {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Efecto de partículas */
+.particulas {
+  position: relative;
+  overflow: hidden;
+}
+
+.particula {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particula 1s ease-out forwards;
+}
+
+@keyframes particula {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Efecto de neón */
+.neon {
+  text-shadow: 0 0 5px #fff,
+               0 0 10px #fff,
+               0 0 20px #fff,
+               0 0 40px #0ff,
+               0 0 80px #0ff,
+               0 0 90px #0ff,
+               0 0 100px #0ff,
+               0 0 150px #0ff;
+  animation: parpadearNeon 1.5s infinite;
+}
+
+@keyframes parpadearNeon {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+/* Efecto de cristal */
+.cristal {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* Efecto de ondas */
+.ondas {
+  position: relative;
+  overflow: hidden;
+}
+
+.onda {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  animation: onda 3s linear infinite;
+}
+
+@keyframes onda {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* Efecto de Morphing */
+.morph {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.morph:hover {
+  transform: scale(1.05) rotate(2deg);
+  filter: hue-rotate(45deg);
+}
+
+/* Efecto de Parallax */
+.parallax {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.parallax-element {
+  transform: translateZ(0);
+  transition: transform 0.5s ease-out;
+}
+
+/* Efecto de Glassmorphism Mejorado */
+.glassmorphism {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.glassmorphism:hover {
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+/* Efecto de Typing */
+.typing {
+  overflow: hidden;
+  border-right: 2px solid #000;
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end),
+             blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #000 }
+}
+
+/* Efecto de Partículas Interactivas */
+.particulas-interactivas {
+  position: relative;
+  overflow: hidden;
+}
+
+.particula-interactiva {
+  position: absolute;
+  background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: particula-interactiva 1s ease-out forwards;
+}
+
+@keyframes particula-interactiva {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* Efecto de Transición de Página */
+.transicion-pagina {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #1a1a1a, #4a4a4a);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  z-index: 1000;
+}
+
+.transicion-pagina.entrada {
+  animation: transicionEntrada 0.5s ease-in-out forwards;
+}
+
+.transicion-pagina.salida {
+  animation: transicionSalida 0.5s ease-in-out forwards;
+}
+
+@keyframes transicionEntrada {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+@keyframes transicionSalida {
+  0% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+
+/* Efecto de Hover con Gradiente */
+.hover-gradiente {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  background-size: 200% 200%;
+  transition: all 0.3s ease;
+}
+
+.hover-gradiente:hover {
+  background-position: right center;
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* Efecto de Brillo en Borde */
+.borde-brillante {
+  position: relative;
+  border: 2px solid transparent;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(45deg, #ff6b6b, #4ecdc4) border-box;
+  animation: borde-brillante 2s linear infinite;
+}
+
+@keyframes borde-brillante {
+  0% { border-image-source: linear-gradient(45deg, #ff6b6b, #4ecdc4); }
+  50% { border-image-source: linear-gradient(45deg, #4ecdc4, #ff6b6b); }
+  100% { border-image-source: linear-gradient(45deg, #ff6b6b, #4ecdc4); }
+}
+
+/* Efecto de Scroll Reveal */
+.revelar {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.revelar.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Efecto de Hover Mejorado para Tarjetas */
+.tarjeta-conocimiento {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tarjeta-conocimiento:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.tarjeta-conocimiento::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+}
+
+.tarjeta-conocimiento:hover::before {
+  transform: translateX(100%);
+}
+
+/* Efecto de Botón Interactivo */
+.btn-interactivo {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-interactivo::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255,255,255,0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-interactivo:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* Efecto de Hover para Imágenes */
+.imagen-hover {
+  transition: all 0.5s ease;
+  cursor: pointer;
+}
+
+.imagen-hover:hover {
+  transform: scale(1.1) rotate(2deg);
+  filter: brightness(1.2) contrast(1.1);
+}
+
+/* Efecto de Cursor Personalizado */
+.cursor-personalizado {
+  cursor: none;
+}
+
+.cursor-personalizado::after {
+  content: '';
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background 0.3s;
+  z-index: 9999;
+}
+
+.cursor-personalizado:hover::after {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.8);
+}
+
+/* Efecto de Scroll Suave */
+.scroll-suave {
+  scroll-behavior: smooth;
+}
+
+/* Efecto de Hover para Enlaces */
+.enlace-hover {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
+.enlace-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.enlace-hover:hover::after {
+  width: 100%;
+}
+
+/* Efecto de Carga de Contenido */
+.cargar-contenido {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: cargarContenido 0.6s ease forwards;
+}
+
+@keyframes cargarContenido {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Efecto de Hover para Iconos */
+.icono-hover {
+  transition: all 0.3s ease;
+}
+
+.icono-hover:hover {
+  transform: scale(1.2) rotate(10deg);
+  filter: drop-shadow(0 0 8px rgba(255,255,255,0.5));
+}
+
+/* Estilos para la sección de bienvenida */
+.seccion-bienvenida {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #000428, #004e92);
+  position: relative;
+  overflow: hidden;
+}
+
+.seccion-bienvenida::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+  animation: rotarFondo 30s linear infinite;
+}
+
+@keyframes rotarFondo {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.contenedor-bienvenida {
+  max-width: 800px;
+  padding: 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.titulo-bienvenida {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+  animation: aparecerTitulo 1s ease-out;
+}
+
+@keyframes aparecerTitulo {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mensaje-bienvenida {
+  margin-bottom: 3rem;
+}
+
+.texto-destacado {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  animation: aparecerTexto 1s ease-out 0.5s both;
+}
+
+.texto-animado {
+  font-size: 1.2rem;
+  color: #a8d0ff;
+  animation: aparecerTexto 1s ease-out 1s both;
+}
+
+@keyframes aparecerTexto {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mision-inicial {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 15px;
+  margin-bottom: 3rem;
+  animation: aparecerMision 1s ease-out 1.5s both;
+}
+
+@keyframes aparecerMision {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.subtitulo-bienvenida {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.lista-mision {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.item-mision {
+  color: #fff;
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  animation: aparecerItem 0.5s ease-out both;
+}
+
+.item-mision:nth-child(1) { animation-delay: 2s; }
+.item-mision:nth-child(2) { animation-delay: 2.2s; }
+.item-mision:nth-child(3) { animation-delay: 2.4s; }
+.item-mision:nth-child(4) { animation-delay: 2.6s; }
+
+@keyframes aparecerItem {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.reto-inicial {
+  animation: aparecerReto 1s ease-out 3s both;
+}
+
+@keyframes aparecerReto {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.titulo-reto {
+  color: #fff;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.texto-reto {
+  color: #a8d0ff;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.contenedor-botones {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-comenzar, .btn-logros {
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-comenzar {
+  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  color: white;
+}
+
+.btn-logros {
+  background: linear-gradient(45deg, #4ecdc4, #45b7d1);
+  color: white;
+}
+
+.btn-comenzar:hover, .btn-logros:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.icono-boton {
+  font-size: 1.5rem;
+}
+
+/* Efecto de partículas flotantes */
+.particula-flotante {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: flotarParticula 15s linear infinite;
+}
+
+@keyframes flotarParticula {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Estilos para la barra de accesibilidad */
+.barra-accesibilidad {
+  position: fixed;
+  top: 120px;
+  right: 20px;
+  z-index: 9999;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  border: 2px solid #4CAF50;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.btn-toggle-accesibilidad {
+  width: 60px;
+  height: 60px;
+  border: none;
+  background: #4CAF50;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10000;
+}
+
+.btn-toggle-accesibilidad:hover {
+  transform: scale(1.1);
+  background: #45a049;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.contenido-accesibilidad {
+  padding: 15px;
+  display: none;
+  min-width: 250px;
+  background: #ffffff;
+  border-radius: 10px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 5px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.barra-accesibilidad.activa .contenido-accesibilidad {
+  display: block;
+  animation: slideIn 0.3s ease forwards;
+}
+
+.grupo-accesibilidad {
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.grupo-accesibilidad label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+}
+
+.controles-fuente, .controles-contraste {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn-accesibilidad {
+  padding: 8px 15px;
+  border: 2px solid #4CAF50;
+  background: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 16px;
+  min-width: 40px;
+}
+
+.btn-accesibilidad:hover {
+  background: #4CAF50;
+  color: white;
+}
+
+.select-accesibilidad {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #4CAF50;
+  border-radius: 5px;
+  font-size: 16px;
+  background: white;
+}
+
+/* Estilos para fuentes especiales */
+.fuente-dyslexic {
+  font-family: 'OpenDyslexic', Arial, sans-serif !important;
+  letter-spacing: 0.5px;
+  line-height: 1.6;
+}
+
+.fuente-alto-contraste {
+  background-color: black !important;
+  color: white !important;
+}
+
+.fuente-alto-contraste * {
+  background-color: black !important;
+  color: white !important;
+}
+
+.fuente-alto-contraste a {
+  color: yellow !important;
+}
+
+/* Animación para la barra */
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Estilos para el modo de alto contraste */
+body.alto-contraste {
+  background-color: black !important;
+  color: white !important;
+}
+
+body.alto-contraste * {
+  background-color: black !important;
+  color: white !important;
+}
+
+body.alto-contraste a {
+  color: yellow !important;
+}
+
+body.alto-contraste .btn-accesibilidad {
+  border-color: yellow;
+  color: yellow;
+}
+
+body.alto-contraste .btn-accesibilidad:hover {
+  background-color: yellow;
+  color: black;
+}
+
+/* Estilos para el modo TEA */
+body.modo-tea {
+  --color-fondo: #f0f8ff;
+  --color-texto: #2c3e50;
+  --color-botones: #3498db;
+  --color-bordes: #bdc3c7;
+  --espaciado-elementos: 20px;
+  --tamano-fuente: 18px;
+  --transicion-suave: all 0.3s ease;
+}
+
+body.modo-tea * {
+  transition: var(--transicion-suave);
+}
+
+body.modo-tea .tarjeta-conocimiento {
+  background-color: var(--color-fondo);
+  border: 2px solid var(--color-bordes);
+  border-radius: 15px;
+  padding: var(--espaciado-elementos);
+  margin-bottom: var(--espaciado-elementos);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.modo-tea .tarjeta-conocimiento:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+body.modo-tea h1, 
+body.modo-tea h2, 
+body.modo-tea h3 {
+  color: var(--color-texto);
+  font-weight: bold;
+  margin-bottom: var(--espaciado-elementos);
+}
+
+body.modo-tea p {
+  font-size: var(--tamano-fuente);
+  line-height: 1.6;
+  color: var(--color-texto);
+  margin-bottom: var(--espaciado-elementos);
+}
+
+body.modo-tea .btn-interactivo {
+  background-color: var(--color-botones);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: var(--tamano-fuente);
+  cursor: pointer;
+  transition: var(--transicion-suave);
+}
+
+body.modo-tea .btn-interactivo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+body.modo-tea .icono-tarjeta {
+  font-size: 2em;
+  margin-bottom: var(--espaciado-elementos);
+  display: block;
+}
+
+body.modo-tea .dato-curioso {
+  background-color: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 15px;
+  margin: var(--espaciado-elementos) 0;
+  border-radius: 0 8px 8px 0;
+}
+
+/* Estilos para la barra de progreso en modo TEA */
+body.modo-tea .barra-progreso {
+  background-color: var(--color-bordes);
+  height: 10px;
+  border-radius: 5px;
+  margin: var(--espaciado-elementos) 0;
+}
+
+body.modo-tea .progreso {
+  background-color: var(--color-botones);
+  height: 100%;
+  border-radius: 5px;
+  transition: var(--transicion-suave);
+}
+
+/* Estilos para las animaciones en modo TEA */
+body.modo-tea .flotar {
+  animation: flotar 3s ease-in-out infinite;
+}
+
+body.modo-tea .pulso {
+  animation: pulso 2s ease-in-out infinite;
+}
+
+/* Estilos para los controles TEA */
+.controles-tea {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.icono-tea {
+  font-size: 1.2em;
+  margin-right: 5px;
+}
+
+/* Estilos para el modo TEA en la navegación */
+body.modo-tea .navegacion-principal {
+  background-color: var(--color-fondo);
+  padding: var(--espaciado-elementos);
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.modo-tea .nav-btn {
+  background-color: var(--color-botones);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  margin: 5px;
+  border: none;
+  font-size: var(--tamano-fuente);
+  transition: var(--transicion-suave);
+}
+
+body.modo-tea .nav-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para el modo TEA en el panel de logros */
+body.modo-tea .panel-logros {
+  background-color: var(--color-fondo);
+  border: 2px solid var(--color-bordes);
+  border-radius: 15px;
+  padding: var(--espaciado-elementos);
+}
+
+body.modo-tea .logro-item {
+  background-color: white;
+  border: 2px solid var(--color-bordes);
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  transition: var(--transicion-suave);
+}
+
+body.modo-tea .logro-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para las imágenes en las tarjetas */
+.imagen-tarjeta {
+    width: 100%;
+    height: 200px;
+    margin: 15px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    background-color: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imagen-tarjeta img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.imagen-tarjeta:hover img {
+    transform: scale(1.05);
+}
+
+/* Ajustes para el modo TEA */
+body.modo-tea .imagen-tarjeta {
+    height: 250px;
+    margin: 20px 0;
+    border: 2px solid var(--color-bordes);
+    background-color: #ffffff;
+}
+
+body.modo-tea .imagen-tarjeta img {
+    filter: brightness(1.1) contrast(1.1);
+}
+
+/* Ajustes responsivos para las imágenes */
+@media (max-width: 768px) {
+    .imagen-tarjeta {
+        height: 180px;
+    }
+    
+    body.modo-tea .imagen-tarjeta {
+        height: 200px;
+    }
+}
+
+/* Mensaje de carga para imágenes */
+.imagen-tarjeta::before {
+    content: 'Cargando imagen...';
+    position: absolute;
+    color: #666;
+    font-size: 14px;
+    display: none;
+}
+
+.imagen-tarjeta:empty::before {
+    display: block;
+} 

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¡Explora el Universo! 🌌</title>
+  <link href="https://fonts.cdnfonts.com/css/opendyslexic" rel="stylesheet">
+  <link rel="stylesheet" href="animaciones.css" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%237b4fff'/%3E%3Ctext x='32' y='44' font-size='32' text-anchor='middle' fill='white' font-family='Arial'%3E%F0%9F%8C%8C%3C/text%3E%3C/svg%3E">
+</head>
+<body class="scroll-suave cursor-personalizado">
+  <div id="contenedor-puntos" class="contenedor-puntos"></div>
+  
+  <!-- Barra de accesibilidad -->
+  <div id="barra-accesibilidad" class="barra-accesibilidad">
+    <button id="toggle-accesibilidad" class="btn-toggle-accesibilidad" aria-label="Mostrar/Ocultar opciones de accesibilidad">
+      <span class="icono-accesibilidad">♿</span>
+    </button>
+    <div class="contenido-accesibilidad">
+      <div class="grupo-accesibilidad">
+        <label for="tamano-fuente">Tamaño de texto:</label>
+        <div class="controles-fuente">
+          <button class="btn-accesibilidad" onclick="cambiarTamanoFuente('disminuir')" aria-label="Disminuir tamaño de texto">A-</button>
+          <button class="btn-accesibilidad" onclick="cambiarTamanoFuente('aumentar')" aria-label="Aumentar tamaño de texto">A+</button>
+        </div>
+      </div>
+      <div class="grupo-accesibilidad">
+        <label for="tipo-fuente">Tipo de letra:</label>
+        <select id="tipo-fuente" class="select-accesibilidad" onchange="cambiarTipoFuente(this.value)">
+          <option value="default">Normal</option>
+          <option value="dyslexic">Dyslexic</option>
+          <option value="high-contrast">Alto contraste</option>
+        </select>
+      </div>
+      <div class="grupo-accesibilidad">
+        <label for="contraste">Contraste:</label>
+        <div class="controles-contraste">
+          <button class="btn-accesibilidad" onclick="cambiarContraste('normal')" aria-label="Contraste normal">Normal</button>
+          <button class="btn-accesibilidad" onclick="cambiarContraste('alto')" aria-label="Alto contraste">Alto</button>
+        </div>
+      </div>
+      <div class="grupo-accesibilidad">
+        <label for="modo-tea">Modo Reducido:</label>
+        <div class="controles-tea">
+          <button class="btn-accesibilidad" onclick="activarModoTEA()" aria-label="Activar modo reducido">
+            <i class="icono-tea">🌙</i> Activar
+          </button>
+          <button class="btn-accesibilidad" onclick="desactivarModoTEA()" aria-label="Desactivar modo reducido">
+            <i class="icono-tea">☀️</i> Desactivar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-hamburguesa">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  
+  <!-- Nueva sección de bienvenida -->
+  <section id="bienvenida" class="seccion-bienvenida">
+    <div class="contenedor-bienvenida">
+      <h1 class="titulo-bienvenida neon">¡Bienvenidos, Exploradores del Universo! 🌌</h1>
+      <div class="mensaje-bienvenida">
+        <p class="texto-destacado">¿Estás listo para embarcarte en la aventura más increíble?</p>
+        <p class="texto-animado">Prepárate para descubrir los secretos del cosmos...</p>
+      </div>
+      <div class="mision-inicial">
+        <h2 class="subtitulo-bienvenida">Tu Misión:</h2>
+        <ul class="lista-mision">
+          <li class="item-mision">🌠 Explorar las maravillas del universo</li>
+          <li class="item-mision">🌍 Descubrir los secretos de nuestro planeta</li>
+          <li class="item-mision">✨ Aprender sobre las estrellas y planetas</li>
+          <li class="item-mision">🚀 Convertirte en un verdadero astronauta del conocimiento</li>
+        </ul>
+      </div>
+      <div class="reto-inicial">
+        <h3 class="titulo-reto">¡Tu Primer Reto!</h3>
+        <p class="texto-reto">¿Podrás encontrar todos los secretos escondidos en esta aventura espacial?</p>
+        <div class="contenedor-botones">
+          <button class="btn-comenzar btn-interactivo" onclick="comenzarAventura()">
+            <span class="icono-boton">🚀</span>
+            ¡Comenzar Aventura!
+          </button>
+          <button class="btn-logros btn-interactivo" onclick="mostrarLogros()">
+            <span class="icono-boton">🏆</span>
+            Ver Logros
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="panel-logros" class="panel-logros">
+    <button id="btn-logros" class="btn-logros">🏆 Logros</button>
+    <div class="logros-contenido">
+      <h3>Mis Logros</h3>
+      <div class="lista-logros">
+        <!-- Los logros se cargarán dinámicamente -->
+      </div>
+    </div>
+  </div>
+  <div id="loader" style="display:none">
+    <div class="loader-spinner"></div>
+    <div>Cargando...</div>
+  </div>
+  <header class="cristal cargar-contenido">
+    <h1 class="neon flotar">🌌 ¡Explora el Universo!</h1>
+    <nav class="navegacion-principal">
+      <button class="nav-btn brillo btn-interactivo" onclick="mostrarSeccion('universo')" id="btn-universo">
+        <span class="icono rotar icono-hover">🌠</span> El Universo
+      </button>
+      <button class="nav-btn brillo btn-interactivo" onclick="mostrarSeccion('tierra')" id="btn-tierra">
+        <span class="icono rotar icono-hover">🌍</span> La Tierra
+      </button>
+      <button class="nav-btn brillo btn-interactivo" onclick="mostrarSeccion('movimiento')" id="btn-movimiento">
+        <span class="icono rotar icono-hover">🔄</span> Movimiento
+      </button>
+      <button class="nav-btn brillo btn-interactivo" onclick="mostrarSeccion('cielo')" id="btn-cielo">
+        <span class="icono rotar icono-hover">✨</span> El Cielo
+      </button>
+      <button class="nav-btn brillo btn-interactivo" onclick="mostrarSeccion('mision')" id="btn-mision">
+        <span class="icono rotar icono-hover">📝</span> Mi Misión
+      </button>
+    </nav>
+  </header>
+
+  <!-- Barra de progreso de navegación -->
+  <div class="barra-progreso">
+    <div class="progreso" id="progreso-bar"></div>
+    <div class="puntos-progreso">
+      <span class="punto" id="punto-universo">🌠</span>
+      <span class="punto" id="punto-tierra">🌍</span>
+      <span class="punto" id="punto-movimiento">🔄</span>
+      <span class="punto" id="punto-cielo">✨</span>
+      <span class="punto" id="punto-mision">📝</span>
+    </div>
+  </div>
+
+  <main>
+    <section id="universo" class="seccion card">
+      <h2>¿Qué hay en el espacio?</h2>
+      <div class="tarjetas-conocimiento">
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🌌</span>
+          <h3>Galaxias</h3>
+          <div class="imagen-tarjeta">
+            <img src="assets/images/via-lactea.png" alt="Imagen de la Vía Láctea" loading="lazy">
+          </div>
+          <p>Las galaxias son grupos gigantes de estrellas. Nuestra casa se llama Vía Láctea. Es como una ciudad enorme de estrellas.</p>
+          <p>La Vía Láctea tiene forma de espiral, como un molinillo. Si pudiéramos verla desde arriba, parecería un remolino gigante con brazos que giran.</p>
+          <p>Dentro de nuestra galaxia hay más de 100.000 millones de estrellas. ¡Son tantas que si contaras una estrella cada segundo, tardarías más de 3.000 años en contarlas todas!</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> En una noche muy oscura, lejos de las luces de la ciudad, podemos ver una franja blanquecina en el cielo. ¡Es nuestra galaxia vista desde dentro! Por eso se llama "Vía Láctea", porque parece un camino de leche en el cielo.</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">⭐</span>
+          <h3>Estrellas</h3>
+          <div class="imagen-tarjeta">
+            <img src="assets/images/estrellas.png" alt="Imagen de estrellas brillantes" loading="lazy">
+          </div>
+          <p>Las estrellas son como lámparas gigantes en el espacio. El Sol es una estrella, ¡nuestra estrella más cercana!</p>
+          <p>Las estrellas nacen, viven mucho tiempo y luego mueren, igual que los seres vivos. Nacen de nubes de gas y polvo en el espacio.</p>
+          <p>El Sol es una estrella de tamaño mediano. Es tan grande que podrían caber más de un millón de Tierras dentro de él. Nos da luz y calor, y sin él no podríamos vivir.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Las estrellas tienen diferentes colores según lo calientes que estén. Las azules son las más calientes (como la llama azul de una cocina), las amarillas son de temperatura media (como nuestro Sol), y las rojas son las más frías (aunque siguen estando muy calientes).</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🪐</span>
+          <h3>Planetas</h3>
+          <div class="imagen-tarjeta">
+            <img src="assets/images/sistema-solar.png" alt="Imagen del Sistema Solar" loading="lazy">
+          </div>
+          <p>Los planetas son bolas grandes que giran alrededor del Sol. La Tierra es un planeta. Hay 8 planetas en nuestro Sistema Solar.</p>
+          <p>Los planetas de nuestro Sistema Solar, en orden desde el Sol, son: Mercurio, Venus, Tierra, Marte, Júpiter, Saturno, Urano y Neptuno.</p>
+          <p>Los cuatro primeros (Mercurio, Venus, Tierra y Marte) son planetas rocosos, como grandes piedras. Los otros cuatro (Júpiter, Saturno, Urano y Neptuno) son planetas gaseosos, como bolas gigantes de gas.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Saturno tiene unos anillos preciosos a su alrededor. Estos anillos están hechos de trozos de hielo y roca. Si pusiéramos a Saturno en una bañera gigante, ¡flotaría! Es el único planeta que podría flotar en el agua porque es menos denso.</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">☄️</span>
+          <h3>Otras cosas del espacio</h3>
+          <div class="imagen-tarjeta">
+            <img src="assets/images/cometa.png" alt="Imagen de un cometa" loading="lazy">
+          </div>
+          <p>En el espacio también hay asteroides (rocas espaciales), cometas (bolas de hielo que dejan una cola brillante) y muchas cosas más.</p>
+          <p>Los asteroides son como rocas que flotan en el espacio. La mayoría están en un cinturón entre Marte y Júpiter. Son los restos de cuando se formó nuestro Sistema Solar.</p>
+          <p>Los cometas son bolas de hielo y polvo. Cuando se acercan al Sol, parte del hielo se derrite y forma una cola brillante. Algunos cometas tardan muchos años en dar una vuelta al Sol.</p>
+          <p>También hay lunas (satélites naturales) que giran alrededor de los planetas. La Tierra tiene una luna, pero otros planetas tienen muchas más. ¡Júpiter tiene más de 80 lunas!</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Hace millones de años, un asteroide muy grande chocó contra la Tierra. Ese choque hizo que se extinguieran los dinosaurios. Por suerte, los asteroides grandes chocan contra la Tierra muy, muy raramente.</p>
+        </div>
+      </div>
+    </section>
+    <section id="tierra" class="seccion card" style="display:none">
+      <h2>¿Cómo es la Tierra?</h2>
+      <div class="tarjetas-conocimiento">
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">⚽</span>
+          <h3>Forma de la Tierra</h3>
+          <p>La Tierra es redonda como una pelota. Si caminaras y caminaras, ¡podrías dar la vuelta entera y volver al mismo lugar!</p>
+          <p>Aunque desde donde estamos parece plana, la Tierra es en realidad una esfera. Es como cuando estamos en un campo muy grande: parece plano, pero sabemos que la Tierra es redonda.</p>
+          <p>La Tierra no es una esfera perfecta. Está un poquito achatada por los polos (arriba y abajo) y un poquito más ancha por el ecuador (la línea del medio). Es como si apretaras un poco una pelota por arriba y por abajo.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Si pudieras hacer un túnel que atravesara toda la Tierra, tardarías 42 minutos en caer de un lado a otro por el centro. ¡Pero no te preocupes! No podemos hacer ese túnel porque el centro de la Tierra está muy caliente.</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🌊</span>
+          <h3>Agua y tierra</h3>
+          <p>La Tierra tiene mucha agua. Los océanos, mares, lagos y ríos cubren la mayor parte. El resto son montañas, bosques, desiertos y ciudades.</p>
+          <p>Si miras un globo terráqueo, verás que hay mucho más azul que marrón o verde. El azul representa el agua, que cubre el 71% de la superficie de la Tierra. ¡Casi tres cuartas partes de nuestro planeta es agua!</p>
+          <p>Hay cinco grandes océanos: Pacífico, Atlántico, Índico, Ártico y Antártico. El océano Pacífico es tan grande que podrían caber todos los continentes dentro de él.</p>
+          <p>La tierra firme está dividida en siete continentes: Europa, Asia, África, América del Norte, América del Sur, Oceanía y Antártida. Nosotros vivimos en Europa.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> El lugar más alto de la Tierra es el monte Everest (¡es tan alto como 170 niños de tu edad uno encima de otro!). Y el lugar más profundo está en el océano, en la Fosa de las Marianas (¡tan profunda como 400 niños uno encima de otro!).</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">☁️</span>
+          <h3>El aire</h3>
+          <p>Alrededor de la Tierra hay una capa de aire llamada atmósfera. Es como una manta que nos protege y nos permite respirar.</p>
+          <p>Aunque no podemos ver el aire, está ahí. Podemos sentirlo cuando sopla el viento o cuando inflamos un globo. La atmósfera es una capa de aire que rodea toda la Tierra.</p>
+          <p>La atmósfera nos protege de los rayos dañinos del Sol y de las rocas que vienen del espacio. También mantiene el calor, como una manta, para que no haga demasiado frío por la noche.</p>
+          <p>El aire que respiramos está formado principalmente por dos gases: nitrógeno (78%) y oxígeno (21%). El oxígeno es el gas que necesitamos para respirar.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Las nubes están hechas de gotitas de agua muy pequeñas o cristalitos de hielo que flotan en el aire. Aunque algunas nubes parecen muy pesadas, ¡en realidad están flotando! Una nube mediana pesa tanto como 100 elefantes, pero como está formada por millones de gotitas muy pequeñas, puede flotar en el aire.</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🏠</span>
+          <h3>Nuestro hogar</h3>
+          <p>La Tierra es nuestro hogar. Aquí vivimos las personas, los animales y las plantas. Es el único planeta donde sabemos que hay vida.</p>
+          <p>La Tierra es especial porque tiene agua líquida, aire para respirar y una temperatura adecuada para la vida. No hace ni demasiado calor ni demasiado frío.</p>
+          <p>En la Tierra hay millones de especies diferentes de seres vivos. Hay animales de todos los tamaños, desde ballenas enormes hasta insectos diminutos. También hay plantas de todo tipo, desde árboles gigantes hasta pequeñas flores.</p>
+          <p>Los seres humanos vivimos en todos los continentes (excepto en la Antártida, que está cubierta de hielo). Hablamos diferentes idiomas y tenemos diferentes culturas, pero todos compartimos el mismo planeta.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Si la Tierra fuera del tamaño de una manzana, la capa de aire que podemos respirar sería tan fina como la piel de esa manzana. Por eso es tan importante cuidar nuestro planeta y no contaminar.</p>
+        </div>
+      </div>
+    </section>
+    <section id="movimiento" class="seccion card" style="display:none">
+      <h2>La Tierra se mueve</h2>
+      <div class="tarjetas-conocimiento">
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🌓</span>
+          <h3>El día y la noche</h3>
+          <div class="imagen-tarjeta">
+            <img src="assets/images/rotacion-tierra.png" alt="Animación de la rotación de la Tierra" loading="lazy">
+          </div>
+          <p>La Tierra gira como un trompo. Cuando una parte mira al Sol es de día, y cuando está en la sombra es de noche.</p>
+          <p>La Tierra gira sobre sí misma, como cuando das vueltas sobre ti mismo. A este movimiento se le llama rotación. La Tierra tarda 24 horas (un día completo) en dar una vuelta entera.</p>
+          <p>Cuando la parte de la Tierra donde vivimos está de cara al Sol, es de día y podemos ver la luz. Cuando nuestra parte de la Tierra está de espaldas al Sol, es de noche y está oscuro.</p>
+          <p>Mientras en España es de día, en otros países como Japón o Australia es de noche. Y cuando aquí es de noche, en esos países es de día. ¡Siempre hay una parte de la Tierra que está a oscuras y otra que está iluminada!</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Aunque no lo notamos, la Tierra gira muy rápido. En el ecuador (la línea del medio de la Tierra), estamos moviéndonos a más de 1.600 kilómetros por hora. ¡Es más rápido que un avión! No lo notamos porque todo a nuestro alrededor se mueve con nosotros, incluido el aire.</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🌞</span>
+          <h3>Las estaciones</h3>
+          <div class="imagen-tarjeta">
+            <img src="assets/images/traslacion-tierra.png" alt="Animación de la traslación de la Tierra" loading="lazy">
+          </div>
+          <p>La Tierra también da vueltas alrededor del Sol. Tarda un año en dar una vuelta completa. Esto causa las estaciones: primavera, verano, otoño e invierno.</p>
+          <p>Además de girar sobre sí misma, la Tierra viaja alrededor del Sol. Este viaje se llama traslación y dura 365 días (un año). La Tierra se mueve por un camino ovalado llamado órbita.</p>
+          <p>La Tierra está un poco inclinada, como si fuera un trompo que no gira derecho. Por esta inclinación, a veces el Sol calienta más una parte de la Tierra que otra.</p>
+          <p>Cuando el Sol calienta más la parte norte de la Tierra, es verano en España y en los países del norte. Al mismo tiempo, es invierno en los países del sur, como Argentina o Australia.</p>
+          <p>Seis meses después, ocurre lo contrario: es invierno en el norte y verano en el sur. En primavera y otoño, el Sol calienta de forma parecida ambas partes de la Tierra.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> En los polos de la Tierra (el Polo Norte y el Polo Sur), hay momentos del año en que el Sol no se pone durante varios días o semanas. ¡Es de día todo el tiempo! Y en otros momentos del año, el Sol no sale durante días o semanas. ¡Es de noche todo el tiempo!</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🔄</span>
+          <h3>Siempre en movimiento</h3>
+          <p>Aunque no lo notamos, la Tierra siempre está moviéndose. Es como si viviéramos en una nave espacial natural que nunca se detiene.</p>
+          <p>La Tierra tiene varios movimientos al mismo tiempo:</p>
+          <ul>
+            <li>Gira sobre sí misma (rotación): un día</li>
+            <li>Gira alrededor del Sol (traslación): un año</li>
+            <li>Viaja con todo el Sistema Solar alrededor del centro de nuestra galaxia</li>
+            <li>Se mueve con toda la galaxia por el espacio</li>
+          </ul>
+          <p>Es como si estuvieras en un tiovivo (la Tierra girando), que está en un coche (el Sistema Solar) que va por una rotonda (la galaxia), y todo eso se mueve por una carretera (el espacio).</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Nuestro Sistema Solar tarda unos 225 millones de años en dar una vuelta completa alrededor del centro de la Vía Láctea. La última vez que estuvimos en este mismo punto de la galaxia, ¡los dinosaurios aún no habían aparecido en la Tierra!</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🌡️</span>
+          <h3>El clima cambia</h3>
+          <p>Cuando la Tierra se mueve alrededor del Sol, cambia la cantidad de luz y calor que recibimos. Por eso hace más calor en verano y más frío en invierno.</p>
+          <p>En verano, el Sol está más alto en el cielo y los días son más largos. Sus rayos caen más directamente sobre nosotros y nos calientan más. Por eso hace calor en verano.</p>
+          <p>En invierno, el Sol está más bajo en el cielo y los días son más cortos. Sus rayos caen más inclinados y nos calientan menos. Por eso hace frío en invierno.</p>
+          <p>En primavera y otoño, el Sol está a una altura intermedia y los días y las noches duran casi lo mismo. Son estaciones de transición entre el frío y el calor.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> El día más largo del año en el hemisferio norte (donde está España) es el 21 de junio, y se llama solsticio de verano. El día más corto es el 21 de diciembre, y se llama solsticio de invierno. En los equinoccios (20 de marzo y 22 de septiembre), el día y la noche duran exactamente lo mismo en todo el mundo.</p>
+        </div>
+      </div>
+    </section>
+    <section id="cielo" class="seccion card" style="display:none">
+      <h2>El cielo de noche</h2>
+      <div class="tarjetas-conocimiento">
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">⭐</span>
+          <h3>Las estrellas</h3>
+          <p>Por la noche podemos ver muchas estrellas brillando en el cielo. Son como el Sol, pero están muy, muy lejos de nosotros.</p>
+          <p>Las estrellas son bolas gigantes de gas muy caliente. Brillan con luz propia, como pequeñas linternas en el cielo nocturno. Algunas estrellas son más grandes que nuestro Sol, y otras son más pequeñas.</p>
+          <p>Las estrellas están agrupadas formando figuras que llamamos constelaciones. Algunas constelaciones famosas son la Osa Mayor (que parece un carro), Orión (que parece un cazador) y el Cisne (que parece un pájaro con las alas extendidas).</p>
+          <p>La estrella más brillante que vemos por la noche se llama Sirio. Es más grande y más caliente que nuestro Sol, y está a 8,6 años luz de distancia. Eso significa que su luz tarda 8,6 años en llegar hasta nosotros.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Cuando miramos las estrellas, estamos viendo cómo eran en el pasado, no cómo son ahora. Esto es porque la luz tarda tiempo en viajar desde ellas hasta nosotros. Es como recibir una carta que alguien te envió hace mucho tiempo.</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🌙</span>
+          <h3>La Luna</h3>
+          <p>La Luna es el objeto más brillante en el cielo nocturno. Cambia de forma a lo largo del mes: a veces es redonda, a veces parece una sonrisa.</p>
+          <p>La Luna es el satélite natural de la Tierra. Eso significa que gira alrededor de nuestro planeta, como la Tierra gira alrededor del Sol. La Luna tarda 27 días en dar una vuelta completa a la Tierra.</p>
+          <p>La Luna no tiene luz propia. Lo que vemos es la luz del Sol que rebota en ella, como un espejo. Según la posición de la Luna respecto al Sol y la Tierra, vemos diferentes partes iluminadas. Estas son las fases de la Luna:</p>
+          <ul>
+            <li>Luna nueva: no se ve (está entre la Tierra y el Sol)</li>
+            <li>Luna creciente: parece una "C" al revés</li>
+            <li>Cuarto creciente: se ve la mitad</li>
+            <li>Luna gibosa creciente: más de la mitad</li>
+            <li>Luna llena: se ve completa y redonda</li>
+            <li>Luna gibosa menguante: más de la mitad</li>
+            <li>Cuarto menguante: se ve la mitad</li>
+            <li>Luna menguante: parece una "C"</li>
+          </ul>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> La Luna siempre nos muestra la misma cara. Nunca podemos ver el otro lado desde la Tierra. Esto es porque tarda lo mismo en girar sobre sí misma que en dar una vuelta alrededor de la Tierra.</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🪐</span>
+          <h3>Planetas brillantes</h3>
+          <p>Algunos planetas se pueden ver desde la Tierra sin telescopio. Venus es muy brillante y a veces se ve por la mañana o por la tarde.</p>
+          <p>Los planetas que podemos ver a simple vista son:</p>
+          <ul>
+            <li>Mercurio: difícil de ver porque está muy cerca del Sol</li>
+            <li>Venus: muy brillante, se ve al amanecer o al atardecer</li>
+            <li>Marte: tiene un color rojizo</li>
+            <li>Júpiter: muy brillante, el segundo objeto más brillante de la noche después de la Luna</li>
+            <li>Saturno: tiene un color amarillento</li>
+          </ul>
+          <p>A diferencia de las estrellas, los planetas no parpadean. Su luz es más constante y estable. Además, los planetas cambian de posición en el cielo con el paso de las semanas, mientras que las estrellas mantienen sus posiciones relativas entre sí.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Venus es tan brillante que a veces se puede ver incluso durante el día. Por eso se le llama "la estrella de la mañana" o "la estrella de la tarde", aunque no es una estrella sino un planeta.</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">💫</span>
+          <h3>Estrellas fugaces</h3>
+          <p>A veces podemos ver rayas de luz que cruzan rápidamente el cielo. Son las estrellas fugaces, que en realidad son pequeñas rocas que caen a la Tierra.</p>
+          <p>Las estrellas fugaces no son estrellas de verdad. Son meteoroides (pequeñas rocas espaciales) que entran en la atmósfera de la Tierra y se queman por el rozamiento con el aire. A este fenómeno se le llama meteoro.</p>
+          <p>Cuando muchas estrellas fugaces aparecen en una misma noche, se llama lluvia de meteoros. Ocurre cuando la Tierra pasa por una zona del espacio con muchos meteoroides. Algunas lluvias de meteoros famosas son:</p>
+          <ul>
+            <li>Las Perseidas: en agosto</li>
+            <li>Las Leónidas: en noviembre</li>
+            <li>Las Gemínidas: en diciembre</li>
+          </ul>
+          <p>Si una roca espacial es muy grande y no se quema completamente en la atmósfera, puede llegar a la superficie de la Tierra. Entonces se llama meteorito.</p>
+          <p class="dato-curioso">✨ <strong><span class="typing">¿Sabías que?</span></strong> Cada día caen a la Tierra unas 100 toneladas de polvo y pequeñas rocas del espacio. La mayoría son tan pequeñas como granos de arena y se queman completamente en la atmósfera, formando estrellas fugaces.</p>
+        </div>
+      </div>
+    </section>
+    <section id="mision" class="seccion card" style="display:none">
+      <h2>Mi misión espacial</h2>
+      <div class="descripcion-mision">
+        <p>¡Bienvenido a tu misión espacial! Para completar esta aventura, debes realizar dos actividades:</p>
+        <ol>
+          <li><strong>Actividad obligatoria:</strong> El juego de preguntas sobre el universo</li>
+          <li><strong>Actividad a elegir:</strong> Debes seleccionar UNA de las siguientes actividades creativas:
+            <ul>
+              <li>Dibujar el espacio</li>
+              <li>Realizar el experimento de día y noche</li>
+              <li>Crear el libro de las fases de la Luna</li>
+              <li>Hacer el Sistema Solar comestible</li>
+              <li>Llevar un diario de observación del cielo</li>
+            </ul>
+          </li>
+        </ol>
+        <p>¡Elige la actividad que más te guste y diviértete aprendiendo sobre el universo!</p>
+      </div>
+      <div class="tarjetas-conocimiento">
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">❓</span>
+          <h3>Juego de preguntas (OBLIGATORIO)</h3>
+          <p class="actividad-obligatoria">Esta actividad es obligatoria para completar la misión.</p>
+          <p>Responde a estas preguntas sencillas:</p>
+          <ul>
+            <li>¿De qué color es la Tierra vista desde el espacio? <em>(Pista: piensa en lo que más hay en la Tierra)</em></li>
+            <li>¿Cuántos planetas hay en nuestro Sistema Solar? <em>(Pista: cuenta con los dedos de tus manos)</em></li>
+            <li>¿Qué causa el día y la noche? <em>(Pista: tiene que ver con el movimiento de la Tierra)</em></li>
+            <li>¿La Luna tiene luz propia? <em>(Pista: piensa en un espejo)</em></li>
+            <li>¿Qué planeta es el más grande? <em>(Pista: empieza por J)</em></li>
+            <li>¿Por qué hace más calor en verano que en invierno? <em>(Pista: tiene que ver con cómo caen los rayos del Sol)</em></li>
+            <li>¿Qué son las estrellas fugaces? <em>(Pista: no son estrellas de verdad)</em></li>
+          </ul>
+          <p><strong>Juego en grupo:</strong> Haced un concurso de preguntas y respuestas. Dividid la clase en dos equipos. Cada equipo hace preguntas al otro sobre lo que habéis aprendido. ¡Gana el equipo que más preguntas acierte!</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🎨</span>
+          <h3>Dibuja el espacio</h3>
+          <p>Haz un dibujo del espacio con:</p>
+          <ul>
+            <li>El Sol (amarillo y grande)</li>
+            <li>La Tierra (azul y verde)</li>
+            <li>La Luna (gris o blanca)</li>
+            <li>Algunas estrellas (de diferentes colores)</li>
+            <li>Otros planetas (puedes elegir los que más te gusten)</li>
+            <li>¡Y lo que tú quieras añadir! Quizás un cometa, un astronauta o una nave espacial</li>
+          </ul>
+          <p><strong>Ideas para tu dibujo:</strong></p>
+          <ul>
+            <li>Usa papel negro o azul oscuro para el fondo</li>
+            <li>Puedes hacer las estrellas con pintura blanca o pegatinas brillantes</li>
+            <li>Dibuja la Tierra con azul para los océanos y verde para los continentes</li>
+            <li>Añade anillos a Saturno</li>
+            <li>Dibuja una cola brillante para un cometa</li>
+          </ul>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🔦</span>
+          <h3>Experimento: Día y noche</h3>
+          <p>Haz este experimento fácil:</p>
+          <ul>
+            <li>Necesitas una linterna y una pelota</li>
+            <li>En una habitación oscura, enciende la linterna (es el Sol)</li>
+            <li>Ilumina la pelota (es la Tierra)</li>
+            <li>Gira lentamente la pelota</li>
+            <li>Observa cómo una parte está iluminada (día) y otra en sombra (noche)</li>
+          </ul>
+          <p><strong>Para hacerlo más divertido:</strong></p>
+          <ul>
+            <li>Pega un pequeño muñeco o una pegatina en la pelota (eres tú)</li>
+            <li>Observa cómo el muñeco pasa del día a la noche mientras giras la pelota</li>
+            <li>Puedes dibujar los continentes en la pelota con un rotulador para que parezca más la Tierra</li>
+            <li>Prueba a inclinar un poco la pelota para ver cómo cambian las estaciones</li>
+          </ul>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🌙</span>
+          <h3>Las fases de la Luna</h3>
+          <p>Haz un libro de las fases de la Luna:</p>
+          <ul>
+            <li>Dobla 4 hojas de papel por la mitad</li>
+            <li>En cada página, dibuja la Luna como se ve en diferentes días</li>
+            <li>Luna nueva (no se ve)</li>
+            <li>Luna creciente (parece una "C" al revés)</li>
+            <li>Luna llena (círculo completo)</li>
+            <li>Luna menguante (parece una "D")</li>
+            <li>¡Decora tu libro con estrellas!</li>
+          </ul>
+          <p><strong>Otra actividad divertida:</strong></p>
+          <ul>
+            <li>Haz las fases de la Luna con galletas redondas:</li>
+            <li>Consigue galletas redondas (tipo Oreo o similares)</li>
+            <li>Para la luna nueva, deja la galleta entera (sin crema)</li>
+            <li>Para la luna creciente, raspa la crema dejando forma de "C" al revés</li>
+            <li>Para el cuarto creciente, raspa la mitad de la crema</li>
+            <li>Para la luna llena, deja toda la crema</li>
+            <li>Para el cuarto menguante, raspa la otra mitad</li>
+            <li>Para la luna menguante, raspa dejando forma de "C"</li>
+            <li>¡Y luego puedes comértelas!</li>
+          </ul>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🪐</span>
+          <h3>Sistema Solar comestible</h3>
+          <p>¡Haz un Sistema Solar que puedas comer!</p>
+          <p>Necesitarás diferentes frutas o dulces de distintos tamaños:</p>
+          <ul>
+            <li>Sol: una naranja grande o un melón pequeño</li>
+            <li>Mercurio: una uva pequeña</li>
+            <li>Venus: una cereza</li>
+            <li>Tierra: una uva grande</li>
+            <li>Marte: un arándano</li>
+            <li>Júpiter: una manzana</li>
+            <li>Saturno: una mandarina (puedes hacer los anillos con galletas)</li>
+            <li>Urano: una ciruela</li>
+            <li>Neptuno: una ciruela pequeña</li>
+          </ul>
+          <p>Coloca todas las "frutas-planetas" en orden desde el Sol. Puedes usar un papel grande como fondo. ¡Y después de enseñar tu Sistema Solar a la clase, puedes comértelo!</p>
+        </div>
+        <div class="tarjeta-conocimiento revelar">
+          <span class="icono-tarjeta">🔭</span>
+          <h3>Diario de observación del cielo</h3>
+          <p>Haz un diario para anotar lo que ves en el cielo cada noche:</p>
+          <ul>
+            <li>Necesitas un cuaderno pequeño</li>
+            <li>Cada noche, antes de dormir, mira por la ventana o sal al balcón o jardín con un adulto</li>
+            <li>Anota en tu diario:
+              <ul>
+                <li>La fecha y la hora</li>
+                <li>Si el cielo está despejado o nublado</li>
+                <li>Cómo se ve la Luna (si se ve)</li>
+                <li>Cuántas estrellas puedes contar</li>
+                <li>Si ves algo especial (una estrella muy brillante, una estrella fugaz...)</li>
+              </ul>
+            </li>
+            <li>Puedes hacer un dibujo de lo que ves</li>
+          </ul>
+          <p>Después de una semana, compara tus observaciones. ¿Ha cambiado la Luna? ¿Has visto las mismas estrellas?</p>
+          <p><strong>Consejo:</strong> Para ver mejor las estrellas, apaga las luces de la habitación y deja que tus ojos se acostumbren a la oscuridad durante unos minutos. ¡Verás muchas más estrellas!</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button class="btn-volver-arriba" aria-label="Volver arriba">↑</button>
+  
+  <footer class="cristal">
+    <p>© Curso 2024/2025 CEIP La Arboleda – ¡Explora el Universo! 🌌</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html> 
